@@ -1,0 +1,15 @@
+def remove_duplicate(s,si=0):
+    if si==len(s)-1:
+        return s[si]
+    sa=remove_duplicate(s,si+1)
+    if s[si]==sa[0]:
+        return sa
+    return s[si]+sa
+
+s=input()
+print(remove_duplicate(s,0))
+
+
+In/Out =>
+aabbccddeefghiaabbhh
+abcdefghiabh
