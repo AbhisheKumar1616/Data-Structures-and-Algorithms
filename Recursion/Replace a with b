@@ -1,0 +1,20 @@
+in => 
+aabbccddee
+a (to be replaced)
+d (with this)
+
+out=>
+ddbbccddee
+
+def replace_all(s,a,b,si=0):
+  if si==len(s) or len(s)==0:
+    return ""
+  sa=replace_all(s,a,b,si+1)
+  if s[si]==a:
+      return b+sa
+  return s[si]+sa
+
+s=input()
+a=input()
+b=input()
+print(replace_all(s,a,b,0))
