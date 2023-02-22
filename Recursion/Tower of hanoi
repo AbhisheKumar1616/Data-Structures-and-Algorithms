@@ -1,0 +1,20 @@
+def hanoi(n,source,helper,destication):
+    if n==0:
+        return
+    hanoi(n-1,source,destication,helper)
+    print(source,destication)
+    hanoi(n-1,helper,source,destication)
+
+n=int(input())
+hanoi(n,"source","helper","destication")
+
+
+IN/Out=>
+3
+source destication
+source helper
+destication helper
+source destication
+helper source
+helper destication
+source destication
