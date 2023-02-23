@@ -1,0 +1,13 @@
+def reverse_int(n,ans=0):
+    if n==0:
+        print(ans)
+        return
+    ans=ans*10+(n%10)
+    sa=reverse_int(n//10,ans)
+n=int(input())
+reverse_int(n)
+
+
+in/out:
+1234
+4321
