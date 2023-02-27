@@ -1,0 +1,27 @@
+def power(x, n):
+    # Please add your code here
+    if n==0:
+        return 1
+
+    if x==0:
+        return 0
+    ans=power(x,n//2)
+    if n%2==0:
+        return ans**2
+    else:
+        return x*ans**2
+
+# Main
+from sys import setrecursionlimit
+setrecursionlimit(11000)
+x, n=list(int(i) for i in input().strip().split(' '))
+print(power(x, n))
+
+
+
+
+IN/OUT:
+3 2
+9
+#Time Complexity=O(log n)
+#Time Complexity=O(log n)
