@@ -1,0 +1,16 @@
+def maximumProfit(arr):
+    new_arr = sorted(arr)
+    price = -1
+    c = 1
+    for i in range(len(new_arr)-1, -1, -1):
+        t = c*new_arr[i]
+        if price < t:
+            price = t
+        c += 1
+    return price
+
+
+n = int(input())
+arr = [int(ele) for ele in input().split()]
+ans = maximumProfit(arr)
+print(ans)
