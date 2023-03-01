@@ -1,0 +1,24 @@
+def split(arr,i,sum):
+    #Implement Your Function here
+    if i==len(arr):
+        if sum==0:
+            return True
+        else:
+            return False
+    else:
+        if arr[i]%5==0:
+            return split(arr,i+1,sum+arr[i])
+        elif arr[i]%3==0:
+            return split(arr, i+1, sum-arr[i])
+        else:
+            a1 = split(arr, i+1, sum+arr[i])
+            a2 = split(arr, i+1, sum-arr[i])
+            return a1 or a2
+
+n = input()
+arr = [int(ele) for ele in input().split()]
+ans = split(arr,0,0)
+if ans is True:
+    print('true')
+else:
+    print('false')
