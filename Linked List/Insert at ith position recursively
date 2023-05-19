@@ -1,0 +1,80 @@
+class Node:
+    def __init__(self,data):
+        self.data=data
+        self.next=None
+
+def takeInput():
+    a=list(map(int,input("enter list: ").split()))
+    i=int(input("enter Pos: "))
+    d=int(input("enter data: "))
+    head,tail=None,None
+    for j in a:
+        if j == -1:
+            return None,None,None
+        newnode=Node(j)
+        if head is None:
+            head=newnode
+            tail=newnode
+        else:
+            tail.next=newnode
+            tail=newnode
+
+    return head,i,d
+def length(head):
+    c=0
+    while head is not None:
+        c+=1
+        head=head.next
+    return c
+def insertith(head,i,d):
+    if head is None:
+        return
+    c=length(head)
+    if i<0 or i>c:
+        return head
+    newnode = Node(d)
+    if i==0:
+        newnode.next=head
+        return newnode
+    prev = None
+    curr = head
+    j = 0
+    while j<i:
+        j+=1
+        prev=curr
+        curr=curr.next
+    prev.next=newnode
+    newnode.next=curr
+    return head
+
+# differnt approach
+def insertith_diff(head,i,d):
+    if head is None:
+        return
+    c=length(head)
+    if i<0 or i>c:
+        return head
+
+    prev = None
+    curr = head
+    j = 0
+    while j<i:
+        j+=1
+        prev=curr
+        curr=curr.next
+    newnode = Node(d)
+    if prev is not None:
+        prev.next=newnode
+    else:
+        head=newnode
+    newnode.next = curr
+    return head
+
+def printLL(head):
+    while head is not None:
+        print(head.data,end=" ")
+        head=head.next
+
+head,i,d=takeInput()
+newhead=insertith(head,i,d)
+printLL(newhead)
