@@ -1,0 +1,68 @@
+class Node:
+    def __init__(self,data):
+        self.data=data
+        self.next=None
+
+def takeInput():
+    a=list(map(int,input("enter list 1 ").split()))
+    b=list(map(int,input("enter list 2 ").split()))
+    head1, tail1 = None, None
+    head2, tail2 = None, None
+    for curr in a:
+        newnode=Node(curr)
+        if head1 is None:
+            head1=newnode
+            tail1=newnode
+        else:
+            tail1.next=newnode
+            tail1=newnode
+    for curr in b:
+        newnode=Node(curr)
+        if head2 is None:
+            head2=newnode
+            tail2=newnode
+        else:
+            tail2.next=newnode
+            tail2=newnode
+    return head1,head2
+
+def mergeTwoLists(list1,list2):
+    head = None
+    tail = None
+    while list1 is not None and list2 is not None:
+        if list1.data < list2.data:
+            if head is None:
+                head = list1
+                tail = head
+                list1 = list1.next
+            else:
+                tail.next = list1
+                tail = list1
+                list1 = list1.next
+
+        else:
+            if head is None:
+                head = list2
+                tail = head
+                list2 = list2.next
+            else:
+                tail.next = list2
+                tail = list2
+                list2 = list2.next
+
+    while list1 is not None:
+        tail.next=list1
+        break
+    while list2 is not None:
+        tail.next=list2
+        break
+    return head
+def printLL(head):
+    while head is not None:
+        print(head.data,end=" ")
+        head=head.next
+
+
+h1,h2=takeInput()
+head=mergeTwoLists(h1,h2)
+printLL(head)
