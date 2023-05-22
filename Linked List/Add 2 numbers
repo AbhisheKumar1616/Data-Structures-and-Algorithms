@@ -1,0 +1,137 @@
+from sys import stdin
+class ListNode:
+    def __init__(self, val):
+        self.val = val
+        self.next = None
+
+def takeInput():
+    head = None
+    tail = None
+
+    datas = list(map(int, input().split()))
+
+    for data in datas:
+        newNode = ListNode(data)
+
+        if head is None:
+            head = newNode
+            tail = newNode
+
+        else:
+            tail.next = newNode
+            tail = newNode
+    return head
+
+
+def printLinkedList(head):
+    while head is not None:
+        print(head.val, end=" ")
+        head = head.next
+
+    print()
+
+
+def addTwoNumbers(l1, l2):
+    c = 0
+    newhead = None
+    tail = None
+    while l1 is not None and l2 is not None:
+        v = l1.val + l2.val + c
+        if v < 10:
+            if newhead is None:
+                newhead = ListNode(v)
+                tail = newhead
+            else:
+                tail.next = ListNode(v)
+                tail = tail.next
+            c = 0
+        else:
+            r = v % 10
+            c = v // 10
+            if newhead is None:
+                newhead = ListNode(r)
+                tail = newhead
+            else:
+                tail.next = ListNode(r)
+                tail = tail.next
+            if l1.next is None and l2.next is None:
+                tail.next = ListNode(c)
+        l1 = l1.next
+        l2 = l2.next
+    while l1 is not None:
+        v = l1.val + c
+        if v < 10:
+            if newhead is None:
+                newhead = ListNode(v)
+                tail = newhead
+            else:
+                tail.next = ListNode(v)
+                tail = tail.next
+            c = 0
+        else:
+            r = v % 10
+            c = v // 10
+            if newhead is None:
+                newhead = ListNode(r)
+                tail = newhead
+            else:
+                tail.next = ListNode(r)
+                tail = tail.next
+            if l1.next is None:
+                tail.next = ListNode(c)
+        l1 = l1.next
+    while l2 is not None:
+        v = l2.val + c
+        if v < 10:
+            if newhead is None:
+                newhead = ListNode(v)
+                tail = newhead
+            else:
+                tail.next = ListNode(v)
+                tail = tail.next
+            c = 0
+        else:
+            r = v % 10
+            c = v // 10
+            if newhead is None:
+                newhead = ListNode(r)
+                tail = newhead
+            else:
+                tail.next = ListNode(r)
+                tail = tail.next
+            if l2.next is None:
+                tail.next = ListNode(c)
+        l2 = l2.next
+    return newhead
+
+# better approach
+class Solution:
+    def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+        cur = dummy = ListNode()
+        carry = 0
+        while l1 and l2:
+            value = l1.val + l2.val + carry
+            carry = value > 9
+            cur.next = ListNode(value % 10)
+            cur = cur.next
+            l1 = l1.next
+            l2 = l2.next
+
+        remain = l1 if l1 else l2
+        while remain:
+            value = remain.val + carry
+            carry = value > 9
+            cur.next = ListNode(value % 10)
+            cur = cur.next
+            remain = remain.next
+
+        if carry:
+            cur.next = ListNode(1)
+
+        return dummy.next
+
+
+l1=takeInput()
+l2=takeInput()
+head=addTwoNumbers(l1,l2)
+printLinkedList(head)
