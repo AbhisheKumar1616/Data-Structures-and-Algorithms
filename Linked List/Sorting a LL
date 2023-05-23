@@ -1,0 +1,28 @@
+class Node:
+    def __init__(self,data):
+        self.data=data
+        self.next=None
+
+def takeInput():
+    a=list(map(int,input("enter list 1 ").split()))
+    head1, tail1 = None, None
+    for curr in a:
+        newnode=Node(curr)
+        if head1 is None:
+            head1=newnode
+            tail1=newnode
+        else:
+            tail1.next=newnode
+            tail1=newnode
+    return head1
+
+def printLL(head):
+    while head is not None:
+        print(head.data,end=" ")
+        head=head.next
+def sortingLL(head):
+    newhead=None
+    newtail=None
+    while head is not None:
+        if newhead is None:
+            pass
