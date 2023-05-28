@@ -1,0 +1,47 @@
+class Node:
+    def __init__(self,data):
+        self.data=data
+        self.next=None
+
+class Stack:
+    def __init__(self):
+        self.__head=None
+        self.__cnt=0
+    def push(self,val):
+        newhead=Node(val)
+        newhead.next=self.__head
+        self.__head=newhead
+        self.__cnt+=1
+    def pop(self):
+        if self.isEmpty():
+            print("Stack Empty")
+            return
+        data=self.__head.data
+        self.__head=self.__head.next
+        self.__cnt-=1
+        return data
+    def top(self):
+        if self.isEmpty():
+            print("Stack Empty")
+            return
+        data=self.__head.data
+        return data
+    def size(self):
+        return self.__cnt
+    def isEmpty(self):
+        return self.__cnt==0
+
+s=Stack()
+s.push(10)
+s.push(20)
+s.push(30)
+print(s.top())
+print(s.size())
+print(s.isEmpty())
+print(s.pop())
+print(s.pop())
+print(s.size())
+print(s.pop())
+print(s.pop())
+
+
