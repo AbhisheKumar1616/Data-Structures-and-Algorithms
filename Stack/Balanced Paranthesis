@@ -1,0 +1,30 @@
+from sys import stdin
+
+
+def isBalanced(expression):
+    s=[]
+    for c in expression:
+        if c in "{[(":
+            s.append(c)
+            continue
+        elif c=="}":
+            if not s or s[-1]!="{":
+                return False
+        elif c=="]":
+            if not s or s[-1]!="[":
+                return False
+        elif c==")":
+            if not s or s[-1]!="(":
+                return False
+        s.pop()
+    if s:
+        return False
+    return True
+# main
+expression = stdin.readline().strip()
+
+if isBalanced(expression):
+    print("true")
+
+else:
+    print("false")
